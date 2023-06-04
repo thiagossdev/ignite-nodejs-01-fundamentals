@@ -47,7 +47,7 @@ export const routes = [
         name: name,
         email: email,
       });
-      return response.writeHead(201).end();
+      return response.writeHead(204).end();
     },
   },
   {
