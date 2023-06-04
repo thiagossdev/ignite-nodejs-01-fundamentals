@@ -33,4 +33,16 @@ export class Database {
     this.#persist();
     return data;
   }
+
+  delete(table, id) {
+    const data = this.select(table);
+    const index = data.findIndex((row) => row.id === id);
+    if (index > -1) {
+      data.splice(index, 1);
+      this.#persist();
+      return data;
+    }
+
+    return null;
+  }
 }
