@@ -19,8 +19,18 @@ export class Database {
     fs.writeFile(databasePath, JSON.stringify(this.#schemas));
   }
 
-  select(table) {
-    return this.#schemas[table] ?? [];
+  select(table, search) {
+    const rows = this.#schemas[table] ?? [];
+
+    if (search) {
+      return rows.filter((row) => {
+        return Object.entries(search).some(([key, value]) => {
+          return row[key].toLowerCase().includes(value.toLowerCase());
+        });
+      });
+    }
+
+    return rows;
   }
 
   insert(table, data) {

@@ -139,6 +139,7 @@
   "discord.lowerDetailsNoWorkspaceFound": "{file_size}",
   // =================== CONFIG: eslint e prettier ===================
   "eslint.format.enable": true,
+  "prettier.printWidth": 120,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
     // "source.organizeImports": true
