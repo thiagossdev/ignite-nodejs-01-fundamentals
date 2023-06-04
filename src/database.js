@@ -34,13 +34,25 @@ export class Database {
     return data;
   }
 
-  delete(table, id) {
-    const data = this.select(table);
-    const index = data.findIndex((row) => row.id === id);
+  update(table, id, data) {
+    const rows = this.select(table);
+    const index = rows.findIndex((row) => row.id === id);
     if (index > -1) {
-      data.splice(index, 1);
+      rows[index] = { id, ...data };
       this.#persist();
-      return data;
+      return rows[index];
+    }
+
+    return null;
+  }
+
+  delete(table, id) {
+    const rows = this.select(table);
+    const index = rows.findIndex((row) => row.id === id);
+    if (index > -1) {
+      rows.splice(index, 1);
+      this.#persist();
+      return id;
     }
 
     return null;
